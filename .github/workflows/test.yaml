@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Build the Docker image
+      uses: actions/checkout@v3
+    -
+      name: Build host info
+      run: |
+        uname -a
+        cat /etc/os-release
+    -
+      name: test
+      run: make test

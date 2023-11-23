@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "serialization-playground"
+version = "0.1.0"
+description = ""
+authors = ["안성철 <scahn@huray.net>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+orjson = "^3.9.10"
+pydantic = "^2.5.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.11.0"
+isort = "^5.12.0"
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+faker = "^20.1.0"
+pytest-order = "^1.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

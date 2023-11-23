@@ -15,7 +15,7 @@ test: ## build docker image and run tests
 	@echo "Building docker image"
 	@docker build -t json-vs-orjson .
 	@echo run image
-	@docker run --rm -v .:/json-vs-orjson -it json-vs-orjson
+	@docker run --rm -v .:/json-vs-orjson -i json-vs-orjson
 
 .PHONY: report
 report: ## generate report

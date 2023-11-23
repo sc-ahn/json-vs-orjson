@@ -1,8 +1,8 @@
 import os
-import pytest
 from models import Post, load_post_from_pickle, save_post_as_pickle
+import pytest
 
-@pytest.mark.order(1)
+@pytest.mark.order(0)
 def test_save_post_as_pickle():
     how_many_post = 1000
     save_post_as_pickle(how_many_post)

@@ -1,0 +1,64 @@
+<html lang="en">
+<script src="script.js" async></script>
+
+<head>
+  <meta charset="utf-8">
+  <title>json vs orjson</title>
+</head>
+
+<body>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+
+    async function renderChart() {
+      const jsonProgressByCount = await loadJSON('json_progress_by_count.json')
+      const orjsonProgressByCount = await loadJSON('orjson_progress_by_count.json')
+
+      console.log(jsonProgressByCount) // -> {'1': 1, '2': 2, ...}
+      console.log(orjsonProgressByCount) // -> {'1': 1, '2': 2, ...}
+
+      const ctx = document.getElementById('myChart');
+      // 2 bar chart
+      const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(jsonProgressByCount),
+          datasets: [{
+            label: 'orjson',
+            data: Object.values(orjsonProgressByCount),
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'json',
+            data: Object.values(jsonProgressByCount),
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              ticks: {
+                callback: function(value, index, ticks) {
+                  return `${value} ms`
+                }
+              }
+            }
+          },
+        }
+      });
+    }
+  </script>
+  <script>
+    window.onload = renderChart
+  </script>
+</body>
+
+</html>
